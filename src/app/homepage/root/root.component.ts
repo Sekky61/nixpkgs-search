@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'homepage-root',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './root.component.css'
 })
 export class RootComponent {
-
+  search = inject(SearchService);
 }
