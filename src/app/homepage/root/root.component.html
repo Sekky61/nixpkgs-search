@@ -1,6 +1,11 @@
 <p>root works!</p>
+<input
+  class="border border-black"
+  type="text"
+  [formControl]="searchStringControl" />
+<p>{{ searchStringControl.value }}</p>
 <ul>
   @for (result of search.results(); track result) {
-    {{ result }}
+    {{ result.name }}
   }
 </ul>

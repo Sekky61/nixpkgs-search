@@ -2,25 +2,43 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, of } from 'rxjs';
 
+interface SearchResponse {
+  query: string;
+  total_results: number;
+  results: SearchResult[];
+}
+
+interface SearchResult {
+  name: string;
+  summary: string;
+  last_updated: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
   http = inject(HttpClient);
-  apiUrl = 'https://search.devbox.sh/v2';
-  private _results = signal([1, 2]);
+  private _results = signal<SearchResult[]>([]);
   results = this._results.asReadonly();
 
-  constructor() {
-    console.log('http', this.http);
-  }
-
-  fetchSearch() {
-    this.http.get(`${this.apiUrl}/search`).pipe(
-      catchError(err => {
-        console.error('api failed', err);
-        return of([]);
-      })
-    );
+  fetchSearch(query: string) {
+    console.log('call search');
+    this.http
+      .get<SearchResponse>(`/api/search`, { params: { q: query } })
+      .pipe(
+        catchError(err => {
+          console.error('api failed', err);
+          return of({
+            query: '',
+            total_results: '',
+            results: [] as SearchResult[],
+          });
+        })
+      )
+      .subscribe(response => {
+        this._results.set(response.results);
+        console.log('search response', response);
+      });
   }
 }
