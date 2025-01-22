@@ -6,7 +6,7 @@ import { SearchService } from '../../services/search.service';
   standalone: true,
   imports: [],
   templateUrl: './root.component.html',
-  styleUrl: './root.component.css'
+  styleUrl: './root.component.css',
 })
 export class RootComponent {
   search = inject(SearchService);
