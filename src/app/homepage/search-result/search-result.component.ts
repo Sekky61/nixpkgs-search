@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { SearchResult } from '../../services/search.service';
-import { CopyToClipboardDirective } from '../../features/copy-to-clipboard.directive';
+import { CopyToClipboardDirective } from '../../features/clipboard/copy-to-clipboard.directive';
 
 @Component({
   selector: 'app-search-result',
