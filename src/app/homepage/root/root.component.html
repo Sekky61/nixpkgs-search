@@ -1,11 +1,8 @@
-<p>root works!</p>
-<input
-  class="border border-black"
-  type="text"
-  [formControl]="searchStringControl" />
-<p>{{ searchStringControl.value }}</p>
-<ul>
-  @for (result of search.results(); track result) {
-    {{ result.name }}
+<div class="flex justify-center p-4">
+  <input placeholder="Search..." class="rounded p-1 border border-black" [formControl]="searchStringControl" />
+</div>
+<ul class="flex flex-col gap-4">
+  @for (result of search.results(); track result.name) {
+  <app-search-result [result]="result"></app-search-result>
   }
 </ul>
