@@ -3,7 +3,7 @@
                 <a [href]="nixSearchUrl()" target="_blank" rel="noopener noreferrer" class="hover:underline pb-2">
                         <p class="font-bold text-lg">{{result().name}}</p>
                 </a>
-                <button appCopyToClipboard [valueToCopy]="result().name" type="button">Copy</button>
+                <button appCopyToClipboard (copied)="sendCopiedNotif($event)" [valueToCopy]="result().name" type="button">Copy</button>
 
         </div>
         <p>{{result().summary}}</p>
