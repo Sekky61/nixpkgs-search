@@ -1,10 +1,11 @@
 import { Component, computed, input } from '@angular/core';
 import { SearchResult } from '../../services/search.service';
+import { CopyToClipboardDirective } from '../../features/copy-to-clipboard.directive';
 
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [],
+  imports: [CopyToClipboardDirective],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.css'
 })
